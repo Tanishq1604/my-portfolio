@@ -3,7 +3,6 @@ import "@/styles/globals.css";
 import "@/styles/locomotive-scroll.css";
 
 import { DM_Sans } from "next/font/google";
-import Theming from "@/components/theme";
 
 const dmSans = DM_Sans({
   display: "swap",

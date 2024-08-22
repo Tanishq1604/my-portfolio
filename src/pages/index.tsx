@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/carousel";
 import VanillaTilt from "vanilla-tilt";
 import { motion } from "framer-motion";
-import About from "@/components/ui/about";
+
 
 const aboutStats = [
   { label: "Years of experience", value: "3+" },
@@ -37,7 +37,7 @@ const aboutStats = [
 const projects = [
   {
     title: "Autospace",
-    description: "Find the best parking near u with multiple frotends for admin and client",
+    description: "Find the best parking near u with multiple frontends for admin,owner and client",
     image: "/assets/autospace_final.webm",
     href: "https://autospace-workshop-web.vercel.app/",
   },
@@ -58,12 +58,6 @@ const projects = [
     description: "Robotics-focused technology company",
     image: "/assets/wrona.jpeg",
     href: "https://www.wrona.com/",
-  },
-  {
-    title: "This website",
-    description: "My personal website",
-    image: "/assets/portfolio.webm",
-    href: "https://github.com/Tanishq1604/portfolio",
   },
 ];
 
@@ -261,7 +255,7 @@ export default function Home() {
 
         {/* About */}
         <section id="about" data-scroll-section>
-         <About/>
+        
         </section>
 
         {/* Projects */}
