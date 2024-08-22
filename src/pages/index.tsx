@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/carousel";
 import VanillaTilt from "vanilla-tilt";
 import { motion } from "framer-motion";
+import About from "@/components/ui/about";
 
 const aboutStats = [
   { label: "Years of experience", value: "3+" },
@@ -35,10 +36,10 @@ const aboutStats = [
 
 const projects = [
   {
-    title: "Unqueue",
-    description: "E-commerce platform for selling digital products",
-    image: "/assets/unqueue.webm",
-    href: "https://unqueue.shop/",
+    title: "Autospace",
+    description: "Find the best parking near u with multiple frotends for admin and client",
+    image: "/assets/autospace_final.webm",
+    href: "https://autospace-workshop-web.vercel.app/",
   },
   {
     title: "InfiniteVPS",
@@ -223,7 +224,7 @@ export default function Home() {
               data-scroll-speed=".06"
               className="flex flex-row items-center space-x-1.5 pt-6"
             >
-              <Link href="https://drive.google.com/file/d/17j7H8FMVB_f0orBkqBq81MAlmRmDsi4i/view?usp=sharing" passHref>
+              <Link href="https://docs.google.com/document/d/1DJxWxo00g4BlDqEX5Tlj2FlbDiMBMmeT/edit?usp=sharing&ouid=101531150290366440617&rtpof=true&sd=true" passHref>
                 <Button>
                   Resume<ChevronRight className="ml-1 h-4 w-4" />
                 </Button>
@@ -260,39 +261,7 @@ export default function Home() {
 
         {/* About */}
         <section id="about" data-scroll-section>
-          <div
-            data-scroll
-            data-scroll-speed=".4"
-            data-scroll-position="top"
-            className="my-14 flex max-w-6xl flex-col justify-start space-y-10"
-          >
-            <h2 className="py-16  pb-2 text-3xl font-light leading-normal tracking-tighter text-foreground xl:text-[40px]">
-              I&apos;m an experienced full-stack developer proficient in{" "}
-              <Link
-                href="https://create.t3.gg/"
-                target="_blank"
-                className="underline"
-              >
-              
-              </Link>{" "}
-             
-            </h2>
-            <div className="grid grid-cols-2 gap-8 xl:grid-cols-3">
-              {aboutStats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="flex flex-col items-center text-center xl:items-start xl:text-start"
-                >
-                  <span className="clash-grotesk text-gradient text-4xl font-semibold tracking-tight xl:text-6xl">
-                    {stat.value}
-                  </span>
-                  <span className="tracking-tight text-muted-foreground xl:text-lg">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+         <About/>
         </section>
 
         {/* Projects */}
