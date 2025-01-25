@@ -323,7 +323,7 @@ export default function Home() {
               data-scroll-speed=".06"
               className="flex flex-row items-center space-x-1.5 pt-6"
             >
-              <Link href="https://docs.google.com/document/d/1DJxWxo00g4BlDqEX5Tlj2FlbDiMBMmeT/edit?usp=sharing&ouid=101531150290366440617&rtpof=true&sd=true" passHref>
+              <Link href="https://drive.google.com/file/d/1KDqJLkQ7ngsrdS2tI3_YcLFXAxATegOk/view?usp=sharing" passHref>
                 <Button>
                   Resume<ChevronRight className="ml-1 h-4 w-4" />
                 </Button>
