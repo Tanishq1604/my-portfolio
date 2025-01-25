@@ -108,3 +108,53 @@
     animation: blink 1s infinite;
   }
 }
+
+@layer utilities {
+  .glassmorphism {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  }
+  
+  .acrylic {
+    @apply relative overflow-hidden;
+    &::before {
+      content: '';
+      @apply absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50;
+      backdrop-filter: blur(20px);
+    }
+  }
+
+  .tech-slider {
+    @apply flex animate-slide;
+    animation: slide 20s linear infinite;
+  }
+  
+  @keyframes slide {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  .tech-grid {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-4 [&>*:nth-child(3)]:md:col-span-2 [&>*:nth-child(8)]:md:col-span-2;
+  }
+
+  .card-gradient {
+    @apply bg-gradient-radial from-primary/5 via-transparent to-transparent;
+  }
+
+  .indie-project-card {
+    @apply relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg;
+    
+    &::before {
+      @apply absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 transition-opacity duration-300;
+      content: '';
+    }
+    
+    &:hover::before {
+      @apply opacity-100;
+    }
+  }
+}

@@ -9,6 +9,11 @@ import {
   SearchCheck,
   Eye,
   MonitorSmartphone,
+  Github,
+  Linkedin,
+  Code,
+  Trophy,
+  Twitter,
 } from "lucide-react";
 import { TriangleDownIcon } from "@radix-ui/react-icons";
 import Spline from "@splinetool/react-spline";
@@ -25,14 +30,92 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import VanillaTilt from "vanilla-tilt";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { AnimatedCard } from "@/components/ui/animated-card";
+import { TechBadge } from "@/components/ui/tech-badge";
+import { 
+  SiJavascript, SiTypescript, SiReact, SiNextdotjs, 
+  SiTailwindcss, SiNodedotjs, SiDocker, SiKubernetes,
+  SiMongodb, SiPostgresql, SiSolidity, SiPython,
+  SiGo, SiRust, SiFlutter, SiDart, SiKotlin,
+  SiFirebase, SiGraphql, SiPrisma, SiWebrtc,
+  SiAmazonec2, SiGooglecloud,
+  SiJenkins, SiGrafana, SiPrometheus, SiGit,
+  SiGithub, SiGitlab, SiBitbucket, SiJira,
+  SiTrpc, SiExpress, SiRedis,
+  SiAndroidstudio, SiXcode, SiSwift, SiThreedotjs,
+  SiFigma, SiFramer, SiVercel, SiNetlify
+} from 'react-icons/si';
 
-
+// Update the stats array
 const aboutStats = [
-  { label: "Years of experience", value: "3+" },
-  { label: "Technologies mastered", value: "5+" },
-  { label: "Companies worked with", value: "15+" },
+  { label: "Projects Completed", value: "43+" },
+  { label: "Hackathons Won", value: "9+" },
+  { label: "Freelance Clients", value: "2+" },
+  { label: "Technologies", value: "36+" },
 ];
+
+// Add this new constant for the sliding tech stack
+const techStack = {
+  "Languages": [
+    { name: "JavaScript", icon: SiJavascript },
+    { name: "TypeScript", icon: SiTypescript },
+    { name: "Python", icon: SiPython },
+    { name: "Go", icon: SiGo },
+    { name: "Rust", icon: SiRust },
+    { name: "Dart", icon: SiDart },
+    { name: "Kotlin", icon: SiKotlin },
+    { name: "Swift", icon: SiSwift },
+    { name: "Solidity", icon: SiSolidity },
+  ],
+  "Frontend": [
+    { name: "React", icon: SiReact },
+    { name: "Next.js", icon: SiNextdotjs },
+    { name: "TailwindCSS", icon: SiTailwindcss },
+    { name: "Flutter", icon: SiFlutter },
+    { name: "Three.js", icon: SiThreedotjs },
+    { name: "Framer Motion", icon: SiFramer },
+    { name: "Figma", icon: SiFigma },
+  ],
+  "Backend": [
+    { name: "Node.js", icon: SiNodedotjs },
+    { name: "Express", icon: SiExpress },
+    { name: "MongoDB", icon: SiMongodb },
+    { name: "PostgreSQL", icon: SiPostgresql },
+    { name: "Redis", icon: SiRedis },
+    { name: "Firebase", icon: SiFirebase },
+    { name: "GraphQL", icon: SiGraphql },
+    { name: "Prisma", icon: SiPrisma },
+    { name: "tRPC", icon: SiTrpc },
+    {name:"Prisma", icon: SiPrisma},
+
+    { name: "WebRTC", icon: SiWebrtc },
+  ],
+  "DevOps & Cloud": [
+    { name: "Docker", icon: SiDocker },
+    { name: "Kubernetes", icon: SiKubernetes },
+    { name: "AWS", icon: SiAmazonec2 },
+    { name: "GCP", icon: SiGooglecloud },
+    { name: "Jenkins", icon: SiJenkins },
+    { name: "Grafana", icon: SiGrafana },
+    { name: "Prometheus", icon: SiPrometheus },
+    { name: "Git", icon: SiGit },
+    { name: "GitHub", icon: SiGithub },
+    { name: "GitLab", icon: SiGitlab },
+    { name: "Bitbucket", icon: SiBitbucket },
+    { name: "Jira", icon: SiJira },
+    { name: "Vercel", icon: SiVercel },
+    { name: "Netlify", icon: SiNetlify },
+  ],
+  "Mobile": [
+    { name: "Flutter", icon: SiFlutter },
+    { name: "Android", icon: SiAndroidstudio },
+    { name: "iOS", icon: SiXcode },
+    { name: "React Native", icon: SiReact },
+    { name: "Kotlin", icon: SiKotlin },
+    { name: "Swift", icon: SiSwift },
+  ]
+};
 
 const projects = [
   {
@@ -92,6 +175,28 @@ const services = [
       "Developing robust, scalable server-side logic for a wide range of web applications.",
     icon: Eye,
   },
+];
+
+const technologies = {
+  "Languages": ["JavaScript", "TypeScript", "C++", "Rust", "Solidity", "Func"],
+  "Frontend": ["React", "Next.js", "TailwindCSS", "Framer Motion", "Three.js"],
+  "Backend": ["Node.js", "Express", "PostgreSQL", "MongoDB", "Redis"],
+  "DevOps": ["Docker", "Kubernetes", "AWS", "CI/CD", "Git"],
+  "Blockchain": ["Ethereum", "Solana", "TON", "Smart Contracts"]
+};
+
+// Update the indieWork constant
+const indieWork = [
+  {
+    title: "Streamers.media",
+    description: "A platform connecting content creators with brands. Built with Next.js and tRPC.",
+    link: "https://streamers.media"
+  },
+  {
+    title: "SendYourDM",
+    description: "Twitter automation tool for marketing outreach.",
+    link: "https://sendyourdm.com"
+  }
 ];
 
 export default function Home() {
@@ -255,7 +360,126 @@ export default function Home() {
 
         {/* About */}
         <section id="about" data-scroll-section>
-        
+          <div data-scroll data-scroll-speed=".4" className="my-64">
+            <div className="space-y-8">
+              {/* Header */}
+              <div>
+                <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter">
+                  ✨ About Me
+                </span>
+                <h2 className="mt-3 text-4xl font-semibold tracking-tight xl:text-6xl">
+                  Creating Impact Through Code
+                </h2>
+              </div>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                {aboutStats.map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="group relative overflow-hidden rounded-xl bg-white/5 p-6 backdrop-blur transition-colors hover:bg-white/10"
+                  >
+                    <div className="relative z-10 flex flex-col items-center justify-center">
+                      <span className="text-gradient text-4xl font-bold">{stat.value}</span>
+                      <span className="mt-2 text-center text-sm text-muted-foreground">
+                        {stat.label}
+                      </span>
+                    </div>
+                    <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Main Grid */}
+              <div className="grid gap-4 md:grid-cols-2">
+                {/* Bio and Indie Projects */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  className="rounded-xl bg-white/5 p-8 backdrop-blur md:col-span-2"
+                >
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-2xl font-semibold text-gradient">Passionate Developer & Problem Solver</h3>
+                      <div className="mt-6 space-y-4 text-lg text-muted-foreground">
+                        <p>
+                          Full Stack Developer with expertise in modern web technologies and cloud infrastructure. 
+                          Through my journey of winning 9+ hackathons and working with multiple clients, 
+                          I've developed a keen eye for creating scalable and efficient solutions.
+                        </p>
+                        <p>
+                          My approach combines technical expertise with creative problem-solving, 
+                          whether I'm building responsive web applications, optimizing cloud infrastructure, 
+                          or developing blockchain solutions.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Indie Projects */}
+                    <div className="border-t border-white/10 pt-6">
+                      <h4 className="text-xl font-semibold text-gradient mb-4">Indie Hacking Projects</h4>
+                      <div className="space-y-4">
+                        {indieWork.map((project, index) => (
+                          <motion.a
+                            key={project.title}
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            className="block group"
+                          >
+                            <h5 className="text-primary group-hover:text-gradient flex items-center">
+                              {project.title}
+                              <ChevronRight className="h-4 w-4 ml-1 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                            </h5>
+                            <p className="text-muted-foreground text-sm mt-1">
+                              {project.description}
+                            </p>
+                          </motion.a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Tech Stack */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:col-span-2">
+                  {Object.entries(techStack).map(([category, techs], index) => (
+                    <AnimatedCard 
+                      key={category}
+                      className={cn(
+                        "bg-gradient-to-br from-primary/5 via-primary/10 to-transparent",
+                        index === 0 ? "md:col-span-2" : ""
+                      )}
+                    >
+                      <h3 className="text-xl font-semibold mb-4">{category}</h3>
+                      <div className="space-y-4">
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          className="flex flex-wrap gap-2"
+                        >
+                          {techs.map((tech, techIndex) => (
+                            <TechBadge 
+                              key={tech.name}
+                              name={tech.name}
+                              icon={tech.icon}
+                              delay={techIndex * 0.05}
+                            />
+                          ))}
+                        </motion.div>
+                      </div>
+                    </AnimatedCard>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Projects */}
